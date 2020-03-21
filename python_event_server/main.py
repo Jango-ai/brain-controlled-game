@@ -9,6 +9,8 @@ from flask import render_template
 from flask import request
 from flask import Response
 
+# import bci_lsl_online_reader
+
 app = Flask(__name__)
 
 
@@ -16,6 +18,7 @@ def get_message():
     """this could be any function that blocks until data is ready"""
     time.sleep(0.3)
     random_event = random.choice(["blink", "jaw"])
+    # random_event = bci_lsl_online_reader.message()
     return random_event
 
 
