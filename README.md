@@ -10,7 +10,7 @@ Based on [`urish/t-rex-brainer`](https://github.com/urish/t-rex-brainer) but mod
 
 ### 0. LSL Server
 
-First of all, you need to have a LSL streaming EEG data. Use [Notebook 3a](https://github.com/rameerez/brain-computer-interfacing/blob/master/course/session3a-neurofeedback_streaming_data_with_mock_lsl_server.ipynb) from the [Brain-Computer Interfacing Bootcamp Course repo](https://github.com/rameerez/brain-computer-interfacing) to start up a mock LSL server that streams EEG data from a dataset.
+First of all, you need to have a LSL server streaming EEG data. Use [Notebook 3a](https://github.com/rameerez/brain-computer-interfacing/blob/master/course/session3a-neurofeedback_streaming_data_with_mock_lsl_server.ipynb) from the [Brain-Computer Interfacing Bootcamp Course repo](https://github.com/rameerez/brain-computer-interfacing) to start up a mock LSL server that streams EEG data from a dataset.
 
 ### 1. Get the code
 
