@@ -1,35 +1,19 @@
-import random
-import threading
-import time
-import json
-
-import flask
-from flask import Flask
-from flask import render_template
-from flask import request
-from flask import Response
-
-# import bci_lsl_online_reader
+from flask import Flask, render_template
+from flask_sse import sse
+import lsl_reader
 
 app = Flask(__name__)
+app.config["REDIS_URL"] = "redis://localhost"
+app.register_blueprint(sse, url_prefix="/events")
+
+with app.app_context():
+    lsl_reader.start()
 
 
-def get_message():
-    """this could be any function that blocks until data is ready"""
-    time.sleep(0.3)
-    random_event = random.choice(["blink", "jaw"])
-    # random_event = bci_lsl_online_reader.message()
-    return random_event
-
-
-@app.route("/events")
-def events():
-    def eventStream():
-        while True:
-            # wait for source data to be available, then push it
-            yield "data: {}\n\n".format(get_message())
-
-    return Response(eventStream(), mimetype="text/event-stream")
+@app.route("/simulate_artifact")
+def simulate_artifact():
+    lsl_reader.send_blink_artifact_event()
+    return "Artifact sent!"
 
 
 @app.after_request

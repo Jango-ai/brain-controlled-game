@@ -45,14 +45,23 @@ live-server
 cd python_event_server
 ```
 
-Set up the `FLASK_APP` var
-
+Install dependencies
 ```
-export FLASK_APP=main.py
+pip install flask flask-sse redis gunicorn gevent mne
+pip install https://api.github.com/repos/mne-tools/mne-realtime/zipball/master
+```
+
+Install redis on your machine (if needed)
+```
+brew install redis # for macOS
+```
+
+Run a local redis server
+```
+redis-server /usr/local/etc/redis.conf
 ```
 
 And finally fire up the Python Flask server:
-
 ```
-flask run --host=0.0.0.0 --port=50005
+gunicorn main:app --worker-class gevent --bind 127.0.0.1:50005
 ```

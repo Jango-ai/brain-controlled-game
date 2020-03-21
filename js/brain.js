@@ -26,13 +26,16 @@ async function connectToMuse() {
 }
 
 async function connectToEventServer() {
-  const source = new EventSource("http://0.0.0.0:50005/events");
-  source.onmessage = function(event) {
-    console.log("Event detected: ", event.data);
-    if (event.data == "blink") {
+  console.log("Connecting to event server...");
+  const source = new EventSource("http://127.0.0.1:50005/events");
+  source.addEventListener(
+    "artifact",
+    function(event) {
+      console.log("Artifact detected: ", event.data);
       dispatchSpacebarKeydownEvent();
-    }
-  };
+    },
+    false
+  );
 }
 
 window.connectToMuse = connectToMuse;
