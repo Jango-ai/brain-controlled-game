@@ -10,11 +10,11 @@ Based on [`urish/t-rex-brainer`](https://github.com/urish/t-rex-brainer) but mod
 
 ### 0. LSL Server
 
-First of all, you need to have a LSL streaming EEG data. Use [Notebook 3a](https://github.com/rameerez/brain-computer-interfacing/blob/master/course/session3a-neurofeedback_streaming_data_with_mock_lsl_server.ipynb) from the [Brain-Computer Interfacing Bootcamp Course repo](https://github.com/rameerez/brain-computer-interfacing) to start up a mock LSL server that streams EEG data from a dataset loaded into a `mne.raw` object.
+First of all, you need to have a LSL streaming EEG data. Use [Notebook 3a](https://github.com/rameerez/brain-computer-interfacing/blob/master/course/session3a-neurofeedback_streaming_data_with_mock_lsl_server.ipynb) from the [Brain-Computer Interfacing Bootcamp Course repo](https://github.com/rameerez/brain-computer-interfacing) to start up a mock LSL server that streams EEG data from a dataset.
 
 ### 1. Get the code
 
-First, clone this repo
+Start by cloning this repo
 
 ```
 git clone https://github.com/rameerez/brain-controlled-game.git
@@ -27,6 +27,8 @@ cd brain-controlled-game
 ```
 
 ### 2. Start up the client web server
+
+Let's first display the actual game window.
 
 Install dependencies
 
@@ -43,6 +45,8 @@ live-server
 
 ### 3. Start up the Python event server
 
+Now, we need a Python `flask` server that sends events to the game web window. The goal of this "event server" is to read EEG data from a LSL streaming and fire events when it detects the right artifacts.
+
 `cd` into the Python server folder
 
 ```
@@ -57,12 +61,12 @@ pip install https://api.github.com/repos/mne-tools/mne-realtime/zipball/master
 
 Install redis on your machine (if needed)
 ```
-brew install redis # for macOS
+brew install redis  # for macOS – if you're using Linux/Windows, look for specific instructions
 ```
 
 Run a local redis server
 ```
-redis-server /usr/local/etc/redis.conf
+redis-server /usr/local/etc/redis.conf  # for macOS - again, look for specific instructions for Win/Linux
 ```
 
 And finally fire up the Python Flask server:
