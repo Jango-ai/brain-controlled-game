@@ -36,6 +36,21 @@ async function connectToEventServer() {
     },
     false
   );
+  source.addEventListener("open", e => {
+    console.log("The connection has been established.");
+    $("#connect-interface-btn")
+      .removeClass("btn-primary")
+      .addClass("btn-outline-success")
+      .text("Neural link connected");
+  });
+  source.onerror = function() {
+    window.alert("Error connecting to the event server.");
+    $("#connect-interface-btn")
+      .removeClass("btn-primary")
+      .removeClass("btn-outline-success")
+      .addClass("btn-danger")
+      .text("⚠️ Neural link disconnected ⚠️");
+  };
 }
 
 window.connectToMuse = connectToMuse;

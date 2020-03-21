@@ -7,8 +7,11 @@
       content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"
     />
     <title>BCI Game</title>
+
     <link rel="stylesheet" href="css/index.css" />
-    <script src="js/index.js"></script>
+    <link rel="stylesheet" href="css/ui.css" />
+
+    <script src="js/trex.js"></script>
     <script src="node_modules/systemjs/dist/system.js"></script>
     <script>
       System.config({
@@ -26,11 +29,23 @@
           "muse-js": "node_modules/muse-js/dist"
         }
       });
-      SystemJS.import("js/brain.js");
+      SystemJS.import("js/brain-link.js");
+      SystemJS.import("js/ui.js");
     </script>
   </head>
 
   <body id="t" class="offline">
+    <div class="container">
+      <div class="row pt-3">
+        <div class="col text-center">
+          <img
+            src="https://raw.githubusercontent.com/rameerez/brain-computer-interfacing/master/assets/bitbrain-x-ai-saturdays-madrid.png"
+            height="30"
+          />
+        </div>
+      </div>
+    </div>
+
     <div id="main-frame-error" class="interstitial-wrapper">
       <div id="main-content">
         <div class="icon icon-offline" alt=""></div>
@@ -60,8 +75,69 @@
         </template>
       </div>
     </div>
-    <div>
-      <button onclick="connectToEventServer()">Connect</button>
+
+    <div class="container">
+      <div class="row">
+        <div
+          class="col-sm-12 col-lg-4 offset-lg-4 text-center border rounded p-3 my-5"
+        >
+          <div class="form-group">
+            <div><span style="font-size: 36px">🧠</span></div>
+            <label><b>Select brain control system</b></label>
+            <div class="text-center mb-3">
+              <div class="btn-group btn-group-justified" data-toggle="buttons">
+                <label class="btn btn-primary btn-sm btn-radio active">
+                  <input
+                    type="radio"
+                    name="lsl"
+                    id="lsl"
+                    brainControlSystemType="lsl"
+                    autocomplete="off"
+                    hidden
+                    checked
+                  />
+                  LSL server
+                </label>
+                <label class="btn btn-primary btn-sm btn-radio">
+                  <input
+                    type="radio"
+                    name="muse"
+                    id="muse"
+                    brainControlSystemType="muse"
+                    autocomplete="off"
+                    hidden
+                  />
+                  Muse (Bluetooth)
+                </label>
+              </div>
+            </div>
+            <button
+              id="connect-interface-btn"
+              class="btn btn-primary btn-block"
+              onclick="connectToBrainInterface()"
+            >
+              Connect to brain interface
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

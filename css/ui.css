@@ -1,0 +1,8 @@
+.btn-radio {
+  cursor: pointer;
+}
+
+.btn.btn-radio:not(active) {
+  color: hsl(208, 56%, 45%);
+  background-color: transparent;
+}

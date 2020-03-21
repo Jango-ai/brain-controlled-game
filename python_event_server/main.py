@@ -1,13 +1,21 @@
 from flask import Flask, render_template
 from flask_sse import sse
+from threading import Thread
 import lsl_reader
+
 
 app = Flask(__name__)
 app.config["REDIS_URL"] = "redis://localhost"
 app.register_blueprint(sse, url_prefix="/events")
 
 with app.app_context():
-    lsl_reader.start()
+
+    def start_lsl():
+        with app.app_context():
+            lsl_reader.start()
+
+    thread = Thread(target=start_lsl, args=())
+    thread.start()
 
 
 @app.route("/simulate_artifact")
