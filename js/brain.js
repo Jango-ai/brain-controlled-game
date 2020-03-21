@@ -3,6 +3,12 @@ require("rxjs/add/operator/map");
 
 const { MuseClient, channelNames } = require("muse-js");
 
+function dispatchSpacebarKeydownEvent() {
+  const jumpEvent = new Event("keydown");
+  jumpEvent.keyCode = 32; // Space key
+  document.dispatchEvent(jumpEvent);
+}
+
 async function connectToMuse() {
   const client = new MuseClient();
   await client.connect();
@@ -15,18 +21,18 @@ async function connectToMuse() {
     .filter(max => max > 400);
 
   blinks.subscribe(() => {
-    const jumpEvent = new Event("keydown");
-    jumpEvent.keyCode = 32; // Space key
-    document.dispatchEvent(jumpEvent);
+    dispatchSpacebarKeydownEvent();
   });
 }
 
 async function connectToEventServer() {
-  // TODO connect to local Python server
-  // const source = new EventSource("demo_sse.php");
-  // source.onmessage = function(event) {
-  //     document.getElementById("result").innerHTML += event.data + "<br>";
-  // };
+  const source = new EventSource("http://0.0.0.0:50005/events");
+  source.onmessage = function(event) {
+    console.log("Event detected: ", event.data);
+    if (event.data == "blink") {
+      dispatchSpacebarKeydownEvent();
+    }
+  };
 }
 
 window.connectToMuse = connectToMuse;
