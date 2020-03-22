@@ -6,6 +6,8 @@ Blinking fires the spacebar `keydown` event.
 
 Based on [`urish/t-rex-brainer`](https://github.com/urish/t-rex-brainer) but modified so it can also ingest data from an EEG LSL server.
 
+![Game screenshot](/assets/game-screenshot.png)
+
 ## Instructions
 
 ### 0. LSL Server
@@ -42,7 +44,6 @@ And start up the web server
 live-server
 ```
 
-
 ### 3. Start up the Python event server
 
 Now, we need a Python `flask` server that sends events to the game web window. The goal of this "event server" is to read EEG data from a LSL streaming and fire events when it detects the right artifacts.
@@ -54,22 +55,26 @@ cd python_event_server
 ```
 
 Install dependencies
+
 ```
 pip install flask flask-sse redis gunicorn gevent mne
 pip install https://api.github.com/repos/mne-tools/mne-realtime/zipball/master
 ```
 
 Install redis on your machine (if needed)
+
 ```
 brew install redis  # for macOS – if you're using Linux/Windows, look for specific instructions
 ```
 
 Run a local redis server
+
 ```
 redis-server /usr/local/etc/redis.conf  # for macOS - again, look for specific instructions for Win/Linux
 ```
 
 And finally fire up the Python Flask server:
+
 ```
 gunicorn main:app --worker-class gevent --bind 127.0.0.1:50005
 ```
