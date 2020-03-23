@@ -82,9 +82,10 @@ Download the `Latest release` compiled version of Redis: https://github.com/micr
 
 Uncompress the `.zip` file and execute `redis-server.exe`
 
-A black terminal screen with the Redis logo should pop up indicating that a local server of Redis is now up and running.
+A black terminal screen with the Redis logo should pop up indicating that a local server of 
+Redis is now up and running.
 
-#### Redis on Linux
+#### Redis on Linux
 
 // TODO search for redis installation instructions on Linux
 
