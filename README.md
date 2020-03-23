@@ -76,7 +76,7 @@ redis-server /usr/local/etc/redis.conf  # for macOS
 ```
 
 And finally fire up the Python Flask server:
-TODO: This part for now we did not figure out how to do in Windows
+For Windows you have here how to make it work https://stackoverflow.com/questions/1422368/fcntl-substitute-on-windows/25471508#25471508
 ```
 gunicorn main:app --worker-class gevent --bind 127.0.0.1:50005
 ```
