@@ -47,8 +47,8 @@ def start():
 
     # with LSLClient(info=stream_info, host=host) as client:
     #     client_info = client.get_measurement_info()
-    #     epoch = client.get_data_as_epoch(n_samples=epoch_size_in_seconds * sfreq)
     #     while True:
+    #         epoch = client.get_data_as_epoch(n_samples=epoch_size_in_seconds * sfreq)
     #         send_server_ok_signal()
     #         process_epoch(epoch)
 
