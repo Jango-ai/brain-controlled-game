@@ -35,7 +35,8 @@ Let's first display the actual game window.
 Install dependencies
 
 ```
-npm intsall
+npm install
+npm install -g live-server
 ```
 
 And start up the web server
@@ -48,7 +49,7 @@ live-server
 
 Now, we need a Python `flask` server that sends events to the game web window. The goal of this "event server" is to read EEG data from a LSL streaming and fire events when it detects the right artifacts.
 
-`cd` into the Python server folder
+Open up a new console, `cd` into the project folder and then `cd` into the Python server folder
 
 ```
 cd python_event_server
@@ -61,20 +62,38 @@ pip install flask flask-sse redis gunicorn gevent mne
 pip install https://api.github.com/repos/mne-tools/mne-realtime/zipball/master
 ```
 
-Install redis on your machine (if needed)
+Now, we need Redis to allow the Python server message system to work. Install and run redis on your machine:
+
+#### Redis on macOS
 
 ```
-brew install redis  # for macOS – if you're using Linux/Windows, look for specific instructions
+brew install redis
 ```
 
-Run a local redis server
+And then run the local redis server
 
 ```
-redis-server /usr/local/etc/redis.conf  # for macOS - again, look for specific instructions for Win/Linux
+redis-server /usr/local/etc/redis.conf
 ```
 
-And finally fire up the Python Flask server:
+#### Redis on Windows
+
+Download the `Latest release` compiled version of Redis: https://github.com/microsoftarchive/redis/releases/download/win-3.0.504/Redis-x64-3.0.504.zip
+
+Uncompress the `.zip` file and execute `redis-server.exe`
+
+A black terminal screen with the Redis logo should pop up indicating that a local server of Redis is now up and running.
+
+#### Redis on Linux
+
+// TODO search for redis installation instructions on Linux
+
+-----------------
+
+Once Redis is installed and running, fire up the Python event server:
 
 ```
 gunicorn main:app --worker-class gevent --bind 127.0.0.1:50005
 ```
+
+And everything should be set up now.
