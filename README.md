@@ -22,7 +22,7 @@ Start by cloning this repo
 git clone https://github.com/rameerez/brain-controlled-game.git
 ```
 
-And then `cd` into it
+And then `cd` into it, in whichever folder you put it
 
 ```
 cd brain-controlled-game
@@ -32,10 +32,11 @@ cd brain-controlled-game
 
 Let's first display the actual game window.
 
-Install dependencies
+Install dependencies within the cd brain-controlled-game, if you do not have them yet
 
 ```
-npm intsall
+npm install
+npm install -g live-server
 ```
 
 And start up the web server
@@ -54,27 +55,28 @@ Now, we need a Python `flask` server that sends events to the game web window. T
 cd python_event_server
 ```
 
-Install dependencies
+Install dependencies (within your coding environment. Anaconda prompt in my case)
 
 ```
 pip install flask flask-sse redis gunicorn gevent mne
 pip install https://api.github.com/repos/mne-tools/mne-realtime/zipball/master
 ```
 
-Install redis on your machine (if needed)
-
+Install redis on your machine.
+If you're using Linux/Windows, you have to look elsewhere.
+I found redis here and downloaded version 3.0.504  https://github.com/microsoftarchive/redis/releases
 ```
-brew install redis  # for macOS – if you're using Linux/Windows, look for specific instructions
+brew install redis  # for macOS
 ```
 
 Run a local redis server
-
+Or if you downloaded it in Windows, double click on redis-server.exe
 ```
-redis-server /usr/local/etc/redis.conf  # for macOS - again, look for specific instructions for Win/Linux
+redis-server /usr/local/etc/redis.conf  # for macOS
 ```
 
 And finally fire up the Python Flask server:
-
+TODO: This part for now we did not figure out how to do in Windows
 ```
 gunicorn main:app --worker-class gevent --bind 127.0.0.1:50005
 ```
