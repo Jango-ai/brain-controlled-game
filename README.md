@@ -98,3 +98,7 @@ gunicorn main:app --worker-class gevent --bind 127.0.0.1:50005
 ```
 
 And everything should be set up now.
+
+**Issue on Windows**
+
+On Windows systems, the above line throws a `ImportError: No module named fcntl` error. This is because `gunicorn` relies on `fcntl`, which is a Linux-only library and thus not available on Windows. An (untested) workaround might be using a mock `fcntl` module as described here: https://stackoverflow.com/a/25471508/2565681
