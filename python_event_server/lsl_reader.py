@@ -15,6 +15,7 @@ def start():
     sfreq = 256
     host = "localhost"
     epoch_size_in_seconds = 1
+    refresh_rate_in_seconds = 1
 
     channels = [
         "Fp1",
@@ -39,18 +40,23 @@ def start():
         ch_names=channels, sfreq=sfreq, ch_types="eeg", montage="standard_1020"
     )
 
-    # COMMENT OUT THIS LOOP WHEN `process_epoch` IS IMPLEMENTED
+    # THIS LOOP SIMULATES A BLINK EVERY 0.3 SECONDS
+    # THIS IS JUST FOR TESTING PURPOSES
+    # COMMENT OUT THIS LOOP TO START WORKING ON THE `process_epoch` IMPLEMENTATION
     while True:
         send_server_ok_signal()
         send_blink_artifact_event()
         time.sleep(0.3)
 
+    # UNCOMMENT THIS TO CONNECT TO THE ACTUAL LSL STREAMING
+    #
     # with LSLClient(info=stream_info, host=host) as client:
     #     client_info = client.get_measurement_info()
-    #     epoch = client.get_data_as_epoch(n_samples=epoch_size_in_seconds * sfreq)
     #     while True:
     #         send_server_ok_signal()
+    #         epoch = client.get_data_as_epoch(n_samples=epoch_size_in_seconds * sfreq)
     #         process_epoch(epoch)
+    #         time.sleep(refresh_rate_in_seconds)
 
 
 def send_server_ok_signal():
