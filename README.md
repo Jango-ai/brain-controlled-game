@@ -80,3 +80,9 @@ And finally fire up the Python Flask server:
 gunicorn main:app --worker-class gevent --bind 127.0.0.1:50005
 ```
 For Windows you have here how to make it work https://stackoverflow.com/questions/1422368/fcntl-substitute-on-windows/25471508#25471508
+
+Other option is using waitress on the terminal on Windows
+```
+pip install waitress
+waitress-serve --port=50005 --host=127.0.0.1 "main:app"
+```
