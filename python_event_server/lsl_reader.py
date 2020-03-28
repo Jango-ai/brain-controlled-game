@@ -55,12 +55,13 @@ def start():
     #    send_blink_artifact_event()
     #    time.sleep(0.3)
 
-     with LSLClient(info=stream_info, host=host) as client:
-         client_info = client.get_measurement_info()
-         while True:
-             epoch = client.get_data_as_epoch(n_samples=epoch_size_in_seconds * sfreq)
-             send_server_ok_signal()
-             process_epoch(epoch)
+    with LSLClient(info=stream_info, host=host) as client:
+        client_info = client.get_measurement_info()
+        while True:
+            epoch = client.get_data_as_epoch(n_samples=epoch_size_in_seconds * sfreq)
+            send_server_ok_signal()
+            process_epoch(epoch
+            time.sleep(0.5) #manda epocas de 1s cada 0.5s
 
 
 def send_server_ok_signal():
