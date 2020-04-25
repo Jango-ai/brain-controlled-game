@@ -20,7 +20,10 @@ def process_epoch(epoch):
     signal_out_range = (signal_out4 + signal_out6 + signal_out8 + signal_out10)/4
     if (signal_range >= 170 and signal_range <= 420 and signal_out_range < signal_range/2):
         send_blink_artifact_event()
-    # Use send_blink_artifact_event() to send the event to the game
+    # Use send_blink_artifact_event() to send the blink event to the game
+    #elif (signal_range >= 300 and signal_range <= 600 and signal_out_range > signal_range*2/3):
+    #    send_bite_artifact_event()
+    # Use send_bite_artifact_event() to send the bite event to the game
     return ""
 
 
