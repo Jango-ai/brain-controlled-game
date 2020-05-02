@@ -86,3 +86,5 @@ Other option is using waitress on the terminal on Windows
 pip install waitress
 waitress-serve --port=50005 --host=127.0.0.1 "main:app"
 ```
+
+*The code snippers in the main folder for machine learning #2 are trying to find another way to identify artefacts, but not yet functional
